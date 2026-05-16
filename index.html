@@ -235,7 +235,7 @@
     .content {
       min-height: 0;
       overflow-y: auto;
-      padding: 22px 26px 28px;
+      padding: 24px 34px 34px;
       scroll-behavior: smooth;
     }
 
@@ -279,45 +279,46 @@
     }
 
     .cue {
-      margin: 0 0 14px;
-      padding: 14px 16px;
-      border-left: 5px solid var(--blue);
-      border-radius: 14px;
+      margin: 0 0 22px;
+      padding: 18px 24px;
+      border-left: 7px solid var(--blue);
+      border-radius: 12px;
       background: linear-gradient(180deg, #f3faff, #e9f5ff);
-      font-size: calc(21px * var(--base));
-      line-height: 1.38;
+      font-size: calc(24px * var(--base));
+      line-height: 1.52;
       font-weight: 800;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
     }
 
     .point {
-      padding: 14px 16px;
+      padding: 22px 26px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .78);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .82);
       box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
     }
 
-    .point.full { grid-column: 1 / -1; }
+    .point.full { grid-column: auto; }
 
     .label {
       display: block;
-      margin-bottom: 8px;
-      color: var(--blue-deep);
-      font-size: calc(17px * var(--base));
+      margin-bottom: 12px;
+      color: #0057b8;
+      font-size: calc(21px * var(--base));
+      line-height: 1.35;
       font-weight: 900;
     }
 
     .point p,
     .point li,
     .note li {
-      font-size: calc(21px * var(--base));
-      line-height: 1.34;
+      font-size: calc(26px * var(--base));
+      line-height: 1.58;
     }
 
     .point p {
@@ -332,13 +333,13 @@
     li + li { margin-top: 8px; }
 
     .quote {
-      margin-top: 12px;
-      padding: 14px 18px;
-      border-radius: 14px;
+      margin-top: 20px;
+      padding: 20px 26px;
+      border-radius: 12px;
       background: var(--warm);
       color: #564417;
-      font-size: calc(23px * var(--base));
-      line-height: 1.28;
+      font-size: calc(28px * var(--base));
+      line-height: 1.42;
       font-weight: 900;
     }
 
@@ -769,7 +770,7 @@
       }
     ];
 
-    const STORAGE_KEY = "jte-recording-cue-v2";
+    const STORAGE_KEY = "jte-recording-cue-v3";
     const slides = loadSavedSlides();
 
     const stage = document.getElementById("stage");
@@ -835,8 +836,7 @@
     }
 
     function pointTemplate([label, text], index, pointsCount, path) {
-      const full = pointsCount % 2 === 1 && index === pointsCount - 1 ? " full" : "";
-      return `<article class="point${full}">
+      return `<article class="point">
         ${editableText(label, `${path}.0`, "span", "label")}
         ${editableText(text, `${path}.1`, "p")}
       </article>`;
